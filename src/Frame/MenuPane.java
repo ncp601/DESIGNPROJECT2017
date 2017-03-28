@@ -376,8 +376,6 @@ public class MenuPane extends JPanel{
         
         add(wallsMenuPanel, "WALLS");
         
-
-
       //Creates the stairsMenuPanel that will hold stairs components
         stairsMenuPanel.setLayout(g);
         
@@ -401,6 +399,11 @@ public class MenuPane extends JPanel{
                 backButtonActionPerformed(evt);
             }
         });
+        
+        elevatorMenuPanel.add(elevatorFactory.getComponent("ELEVATORRIGHT"));
+        elevatorMenuPanel.add(elevatorFactory.getComponent("ELEVATORLEFT"));
+        elevatorMenuPanel.add(elevatorFactory.getComponent("ELEVATORUP"));
+        elevatorMenuPanel.add(elevatorFactory.getComponent("ELEVATORDOWN"));
         
         add(elevatorMenuPanel, "ELEVATORS");
 
