@@ -9,9 +9,8 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import Factories.AbstractFloorComponentFactory;
-import Factories.FloorComponentFactoryProducer;
-import FloorComponent.FloorComponent;
+import Factories.*;
+import FloorComponent.*;
 
 /**
  * Class that creates everything in the left tabbed panel. 
@@ -25,24 +24,42 @@ public class TabbedPane implements ChangeListener{
 	private MainLayeredPane selectedTab;
 	private MainLayeredPane previousTab;
 	private MainLayeredPane currentFloor;
+	private MainLayeredPane loadingFloor;
     
 	private Component[] onGrid;
 	private Component[] componentList;
+	
 	private String extendedComponentType;
+	
 	private StringBuilder loadedType;
+	private StringBuilder loadedLocation;
 	private FloorComponent extendedComponent;
+	private FloorComponent loadedComponent;
+	
 	private AbstractFloorComponentFactory wallFactory = FloorComponentFactoryProducer.getFactory("WALL");
 	private AbstractFloorComponentFactory stairsFactory = FloorComponentFactoryProducer.getFactory("STAIRS");
 	private AbstractFloorComponentFactory elevatorFactory = FloorComponentFactoryProducer.getFactory("ELEVATOR");
-	
+    private AbstractFloorComponentFactory windowFactory = FloorComponentFactoryProducer.getFactory("WINDOW");
+    private AbstractFloorComponentFactory doorFactory = FloorComponentFactoryProducer.getFactory("DOOR");
+    private AbstractFloorComponentFactory flooringFactory = FloorComponentFactoryProducer.getFactory("FLOORING");
+    private AbstractFloorComponentFactory dinningRoomFactory = FloorComponentFactoryProducer.getFactory("DINNINGROOM");
+    private AbstractFloorComponentFactory bedroomFactory = FloorComponentFactoryProducer.getFactory("BEDROOM");
+    private AbstractFloorComponentFactory bathroomFactory = FloorComponentFactoryProducer.getFactory("BATHROOM");
+    private AbstractFloorComponentFactory laundryFactory = FloorComponentFactoryProducer.getFactory("LAUNDRY");
+    private AbstractFloorComponentFactory garageFactory = FloorComponentFactoryProducer.getFactory("GARAGE");
+    
     private InnerPanel innerPanel;
     
     //Regular expressions used to parse various strings
     String addFloorPattern = "(Wall)|(Elevator)|(Stairs)"; // (WALL([1-3]+([H|V])|(HALF)))|(ELEVATOR(DOWN|UP|RIGHT|LEFT))
     String initialCheckPattern = "^[$].*[$]$";
     
+    private int loadIndex = 0;
 	private int tabNumber = 0;
 	private int index = 0;
+	
+	private int xLocation = 0;
+	private int yLocation = 0;
 	
 	public TabbedPane() {
 		
@@ -97,11 +114,10 @@ public class TabbedPane implements ChangeListener{
 	        floorTabPanel.setSelectedIndex(floorTabPanel.getTabCount() - 2);
 	        floorTabPanel.setEnabledAt(floorTabPanel.getTabCount()-1, false);	
 	        floorTabPanel.addChangeListener(this);
-	 
 	    } 
     }
 	
-	public  void removeCurrentFloor(){
+	public void removeCurrentFloor(){
 
         //if 1 tab + plus tab do nothing
         if(tabNumber == 1){ 
@@ -184,26 +200,114 @@ public class TabbedPane implements ChangeListener{
 		Matcher m = initialPattern.matcher(loadComponents);
 		
 		if(m.find()){
-			System.out.println("Match comfirmed");
-			for(int i = 0; i < loadComponents.length(); i++){
-				int j = i+1;
+			
+			int j = 0;
+			int i = 0;
+			while(i < loadComponents.length()){
 				if(loadComponents.charAt(i) == '@'){
 					System.out.println("@ Found");
 					loadedType = new StringBuilder();
+					j = i + 1;
 					while(loadComponents.charAt(j) != '@'){
 						loadedType.append(loadComponents.charAt(j));
 						j++;
 					}
+					i = j;
 					System.out.println(loadedType.toString());
 				}
 				
-//				i = j;
-//				
-//				if(loadComponents.charAt(i) == '#'){
-//					j = i;
-//					
-//				}
+				if(loadComponents.charAt(i) == '#'){
+					System.out.println("# Found");
+					loadedLocation = new StringBuilder();
+					j = i + 18;
+					while(loadComponents.charAt(j) != ','){
+						loadedLocation.append(loadComponents.charAt(j));
+						j++;
+					}
 					
+					System.out.println(loadedLocation.toString());
+					String x = loadedLocation.toString();
+					xLocation = Integer.parseInt(x);
+					
+					loadedLocation = new StringBuilder();
+					j = j + 3;
+					while(loadComponents.charAt(j) != ']'){
+						loadedLocation.append(loadComponents.charAt(j));
+						j++;
+					}
+					
+					System.out.println(loadedLocation.toString());
+					String y = loadedLocation.toString();
+					yLocation = Integer.parseInt(y);
+					i = j + 1;
+				}
+				
+				if(loadComponents.charAt(i) == '|' && loadComponents.charAt(i+1) == '|'){
+					System.out.println("Loading a component");
+					System.out.println(loadedType.toString());
+					
+					if(wallFactory.getGridComponent(loadedType.toString()) != null){
+						System.out.println("Wall");
+						loadedComponent = wallFactory.getGridComponent(loadedType.toString());
+					}
+					
+					if(elevatorFactory.getGridComponent(loadedType.toString()) != null){
+						loadedComponent = elevatorFactory.getGridComponent(loadedType.toString());
+					}
+					
+					if(stairsFactory.getGridComponent(loadedType.toString()) != null){
+						loadedComponent = stairsFactory.getGridComponent(loadedType.toString());
+					}
+					
+					if(windowFactory.getGridComponent(loadedType.toString()) != null){
+						loadedComponent = windowFactory.getGridComponent(loadedType.toString());
+					}
+					
+					if(doorFactory.getGridComponent(loadedType.toString()) != null){
+						loadedComponent = doorFactory.getGridComponent(loadedType.toString());
+					}
+					
+					if(flooringFactory.getGridComponent(loadedType.toString()) != null){
+						loadedComponent = flooringFactory.getGridComponent(loadedType.toString());
+					}
+					
+					if(dinningRoomFactory.getGridComponent(loadedType.toString()) != null){
+						loadedComponent = dinningRoomFactory.getGridComponent(loadedType.toString());
+					}
+					
+					if(bedroomFactory.getGridComponent(loadedType.toString()) != null){
+						loadedComponent = bedroomFactory.getGridComponent(loadedType.toString());
+					}
+					
+					if(bathroomFactory.getGridComponent(loadedType.toString()) != null){
+						loadedComponent = bathroomFactory.getGridComponent(loadedType.toString());
+					}
+					
+					if(laundryFactory.getGridComponent(loadedType.toString()) != null){
+						loadedComponent = laundryFactory.getGridComponent(loadedType.toString());
+					}
+					
+					if(garageFactory.getGridComponent(loadedType.toString()) != null){
+						loadedComponent = garageFactory.getGridComponent(loadedType.toString());
+					}
+					
+					loadingFloor = (MainLayeredPane) floorTabPanel.getComponentAt(floorTabPanel.getTabCount() - 2);
+					loadingFloor.getGlassPanel().add(loadedComponent);
+					loadedComponent.setIsOnGrid(true);
+					loadedComponent.setSize(loadedComponent.getGridImageSize());
+			    	loadedComponent.setLocation(xLocation, yLocation);
+			    	loadedComponent.setVisible(true);
+			    	loadingFloor.revalidate();
+			    	loadingFloor.repaint();
+					
+				}
+				
+				if(loadComponents.charAt(i) == '%' && loadComponents.charAt(i+1) == '%' && loadComponents.charAt(i+2) == '%' && loadComponents.charAt(i+3) == '%'){
+					insertTab();
+					floorTabPanel.revalidate();
+			    	floorTabPanel.repaint();
+				}
+				i++;
 			}
 			
 		}

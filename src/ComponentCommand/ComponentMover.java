@@ -94,7 +94,6 @@ public class ComponentMover extends MouseAdapter
 	    		type = currentComponent.getComponentType();
 	    		System.out.println(type);
 	    		
-	    		
 		    	if(wallFactory.getComponent(type) != null){
 		    		newComponent = wallFactory.getGridComponent(type);
 		    	}
