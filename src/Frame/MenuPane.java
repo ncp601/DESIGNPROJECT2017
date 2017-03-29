@@ -398,12 +398,12 @@ public class MenuPane extends JPanel{
         stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSU"));
         stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSR"));
         stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSL"));
-        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
-        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
-        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
-        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
-        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
-        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
+//         stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
+//         stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
+//         stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
+//         stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
+//         stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
+//         stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
 //        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
 //        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
         
