@@ -1,10 +1,6 @@
 package Factories;
 
-import FloorComponent.ElevatorComponentFacingDown;
-import FloorComponent.ElevatorComponentFacingLeft;
-import FloorComponent.ElevatorComponentFacingRight;
-import FloorComponent.ElevatorComponentFacingUp;
-import FloorComponent.FloorComponent;
+import FloorComponent.*;
 
 public class ElevatorComponentFactory extends AbstractFloorComponentFactory{
 	

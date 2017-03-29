@@ -7,7 +7,7 @@ import javax.swing.*;
 
 import Factories.AbstractFloorComponentFactory;
 import Factories.FloorComponentFactoryProducer;
-import FloorComponent.*;
+import FloorComponent.FloorComponent;
 
 /**
  * Class that creates everything in the left menu panel 
@@ -70,7 +70,6 @@ public class MenuPane extends JPanel{
     private AbstractFloorComponentFactory garageFactory;
     
     private String type = "";
-    private FloorComponent fillLabel;
     private FloorComponent newComponent;
     private FloorComponent currentComponent;
     private Boolean componentSet = false;
@@ -395,6 +394,19 @@ public class MenuPane extends JPanel{
             }
         });
 
+        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
+        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSU"));
+        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSR"));
+        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSL"));
+        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
+        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
+        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
+        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
+        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
+        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
+//        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
+//        stairsMenuPanel.add(stairsFactory.getComponent("STAIRSSD"));
+        
         add(stairsMenuPanel, "STAIRS");
 
       //Creates the elevatorMenuPanel that will hold elevator components

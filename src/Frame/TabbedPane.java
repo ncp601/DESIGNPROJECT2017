@@ -2,8 +2,7 @@ package Frame;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.*;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -38,7 +37,8 @@ public class TabbedPane implements ChangeListener{
     
     //Regular expressions used to parse various strings
     String addFloorPattern = "(Wall)|(Elevator)|(Stairs)"; // (WALL([1-3]+([H|V])|(HALF)))|(ELEVATOR(DOWN|UP|RIGHT|LEFT))
-    String initialCheckPattern = "";
+    String initialCheckPattern = "^[$].*[$]$";
+    String componentsPattern = "";
     
 	private int tabNumber = 0;
 	private int index = 0;
@@ -148,8 +148,14 @@ public class TabbedPane implements ChangeListener{
 		String loadComponents = innerPanel.getLoadedComponents();
 		
 		Pattern initialPattern = Pattern.compile(initialCheckPattern);
+		Matcher m = initialPattern.matcher(loadComponents);
 		
-		if(loadComponents.matches(initialCheckPattern)){
+		if(m.find()){
+			for(int i = 0; i < loadComponents.length(); i++){
+//				if(loadComponents.charAt(i) == ){
+//					
+//				}
+			}
 			
 		}
 	}
@@ -164,22 +170,23 @@ public class TabbedPane implements ChangeListener{
 			currentFloor = (MainLayeredPane) floorTabPanel.getComponentAt(tabs -1);
 			componentList = currentFloor.getGlassPanel().getComponents();
 			for(int j = 0; j < componentList.length; j++){
-				String temp = componentList[j].toString();
+				String name = ((FloorComponent) componentList[j]).getComponentType();
+				String location = componentList[j].getLocation().toString();
 				if(i == 0 && j == 0){
-					allComponents = "$ " + temp + " || ";
+					allComponents = "$" + name + "#" + location + "||";
 				}
 				
 				if(j == componentList.length - 1){
-					allComponents = allComponents + temp;
+					allComponents = allComponents + name + "#" + location;
 				}
 				
 				else {
-					allComponents = allComponents + temp + " || ";
+					allComponents = allComponents + name + "#" + location + "||";
 				}
 			}
-			allComponents = allComponents + " %%%% ";
+			allComponents = allComponents + "%%%%";
 		}
-		allComponents = allComponents + " $";
+		allComponents = allComponents + "$";
 		return allComponents;
 	}
 	
