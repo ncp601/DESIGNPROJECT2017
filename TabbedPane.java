@@ -173,10 +173,30 @@ public class TabbedPane implements ChangeListener{
 	public void stringToFloorComponents(){
 		innerPanel = InnerPanel.getInstance();
 		String loadComponents = innerPanel.getLoadedComponents();
-		
 		Pattern initialPattern = Pattern.compile(initialCheckPattern);
+		Matcher m = initialPattern.matcher(loadComponents);
 		
-		if(loadComponents.matches(initialCheckPattern)){
+		if(m.find()){
+			System.out.println("Match comfirmed");
+			for(int i = 0; i < loadComponents.length(); i++){
+				int j = i+1;
+				if(loadComponents.charAt(i) == '@'){
+					System.out.println("@ Found");
+					loadedType = new StringBuilder();
+					while(loadComponents.charAt(j) != '@'){
+						loadedType.append(loadComponents.charAt(j));
+						j++;
+					}
+				}
+				
+				i = j;
+				
+				if(loadComponents.charAt(i) == '#'){
+					j = i;
+					
+				}
+					
+			}
 			
 		}
 	}
