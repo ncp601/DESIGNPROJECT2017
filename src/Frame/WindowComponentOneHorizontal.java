@@ -14,7 +14,7 @@ public class WindowComponentOneHorizontal extends FloorComponent{
 	final private String componentType = "WINDOW1H";
 
 	private Dimension size = new Dimension(110, 110);
-	private Dimension gridSize = new Dimension(34, 17);
+	private Dimension gridSize = new Dimension(34, 19);
 	
 	private boolean inMenu;
 	private ComponentMover compMove = new ComponentMover();
@@ -31,16 +31,18 @@ public class WindowComponentOneHorizontal extends FloorComponent{
 	public void createComponent(){
 		
 		if(inMenu){
-			ImageIcon image = new ImageIcon("images/oneBlockWindowHorizontal");
+			ImageIcon image = new ImageIcon("images/oneBlockWindowHorizontal.png");
 			setIcon(image);
+			setVisible(true);
 			setMaximumSize(size);
 			setMinimumSize(size);
 	        setPreferredSize(size);
 		}
 		
 		if(!inMenu){
-			ImageIcon image = new ImageIcon("images/resizedOneBlockWindowHorizontal");
+			ImageIcon image = new ImageIcon("images/resizedOneBlockWindowHorizontal.png");
 			setIcon(image);
+			setVisible(true);
 			setMaximumSize(gridSize);
 			setMinimumSize(gridSize);
 	        setPreferredSize(gridSize);

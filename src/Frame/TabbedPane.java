@@ -24,14 +24,16 @@ public class TabbedPane implements ChangeListener{
     
 	private Component[] onGrid;
 	private Component[] componentList;
-	private String wallType;
-	private FloorComponent wallComponent;
+	private String extendedComponentType;
+	private FloorComponent extendedComponent;
 	private AbstractFloorComponentFactory wallFactory = FloorComponentFactoryProducer.getFactory("WALL");
+	private AbstractFloorComponentFactory stairsFactory = FloorComponentFactoryProducer.getFactory("STAIRS");
+	private AbstractFloorComponentFactory elevatorFactory = FloorComponentFactoryProducer.getFactory("ELEVATOR");
 	
     private InnerPanel innerPanel;
     
     //Regular expressions used to parse various strings
-    String addFloorPattern = ".*(WALL([1-3]+([H|V])|(HALF)))|(ELEVATOR(DOWN|UP|RIGHT|LEFT))";
+    String addFloorPattern = "(Wall)|(Elevator)|(Stairs)"; // (WALL([1-3]+([H|V])|(HALF)))|(ELEVATOR(DOWN|UP|RIGHT|LEFT))
     String initialCheckPattern = "";
     
 	private int tabNumber = 0;
@@ -114,13 +116,22 @@ public class TabbedPane implements ChangeListener{
 		for(int i = 0; i < onGrid.length; i++){
 			Matcher m = wallPattern.matcher(onGrid[i].toString());
 			if(m.find()){
-				wallType = ((FloorComponent) onGrid[i]).getComponentType();
-				wallComponent = wallFactory.getGridComponent(wallType);
-				innerPanel.getSelectedFloor().getGlassPanel().add(wallComponent);
-				wallComponent.setLocation(onGrid[i].getLocation());
-				wallComponent.setSize(onGrid[i].getSize());
-				wallComponent.setVisible(true);
-				wallComponent.setIsOnGrid(true);
+				extendedComponentType = ((FloorComponent) onGrid[i]).getComponentType();
+				
+				if(wallFactory.getGridComponent(extendedComponentType) != null)
+					extendedComponent = wallFactory.getGridComponent(extendedComponentType);
+				
+				if(elevatorFactory.getGridComponent(extendedComponentType) != null)
+					extendedComponent = elevatorFactory.getGridComponent(extendedComponentType);
+				
+				if(stairsFactory.getGridComponent(extendedComponentType) != null)
+					extendedComponent = stairsFactory.getGridComponent(extendedComponentType);
+				
+				innerPanel.getSelectedFloor().getGlassPanel().add(extendedComponent);
+				extendedComponent.setLocation(onGrid[i].getLocation());
+				extendedComponent.setSize(onGrid[i].getSize());
+				extendedComponent.setVisible(true);
+				extendedComponent.setIsOnGrid(true);
 				System.out.println(onGrid[i].toString());
 			}
 		}
