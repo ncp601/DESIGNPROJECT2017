@@ -30,9 +30,11 @@ public class TabbedPane implements ChangeListener{
 	private Component[] componentList;
 	
 	private String extendedComponentType;
+	private String loadedComponentType;
 	
 	private StringBuilder loadedType;
 	private StringBuilder loadedLocation;
+	
 	private FloorComponent extendedComponent;
 	private FloorComponent loadedComponent;
 	
@@ -193,6 +195,9 @@ public class TabbedPane implements ChangeListener{
 		previousTab.revalidate();
 	}
 	
+	/*
+	 * 
+	 */
 	public void stringToFloorComponents(){
 		innerPanel = InnerPanel.getInstance();
 		String loadComponents = innerPanel.getLoadedComponents();
@@ -213,6 +218,7 @@ public class TabbedPane implements ChangeListener{
 						j++;
 					}
 					i = j;
+					loadedComponentType = loadedType.toString();
 					System.out.println(loadedType.toString());
 				}
 				
@@ -245,6 +251,7 @@ public class TabbedPane implements ChangeListener{
 				if(loadComponents.charAt(i) == '|' && loadComponents.charAt(i+1) == '|'){
 					System.out.println("Loading a component");
 					System.out.println(loadedType.toString());
+					System.out.println(wallFactory.getGridComponent(loadedType.toString()).toString());
 					
 					if(wallFactory.getGridComponent(loadedType.toString()) != null){
 						System.out.println("Wall");
@@ -313,6 +320,9 @@ public class TabbedPane implements ChangeListener{
 		}
 	}
 	
+	/*
+	 * 
+	 */
 	public String floorsToString(){
         innerPanel = InnerPanel.getInstance();
 
