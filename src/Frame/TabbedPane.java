@@ -194,14 +194,15 @@ public class TabbedPane implements ChangeListener{
 						loadedType.append(loadComponents.charAt(j));
 						j++;
 					}
+					System.out.println(loadedType.toString());
 				}
 				
-				i = j;
-				
-				if(loadComponents.charAt(i) == '#'){
-					j = i;
-					
-				}
+//				i = j;
+//				
+//				if(loadComponents.charAt(i) == '#'){
+//					j = i;
+//					
+//				}
 					
 			}
 			
@@ -221,15 +222,15 @@ public class TabbedPane implements ChangeListener{
                 String name = ((FloorComponent) componentList[j]).getComponentType();
                 String location = componentList[j].getLocation().toString();
                 if(i == 0 && j == 0){
-                    allComponents = "$" + "@" + name + "@" + "#" + location + "||";
+                    allComponents = "$" + "@" + name + "@" + "#" + location + "#" + "||";
                 }
 
                 if(j == componentList.length - 1){
-                    allComponents = allComponents + "@" + name + "@" + "#" + location;
+                    allComponents = allComponents + "@" + name + "@" + "#" + location + "#";
                 }
 
                 else {
-                    allComponents = allComponents + "@" + name + "@" + "#" + location + "||";
+                    allComponents = allComponents + "@" + name + "@" + "#" + location + "#" + "||";
                 }
             }
             allComponents = allComponents + "%%%%";
