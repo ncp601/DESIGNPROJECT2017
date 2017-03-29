@@ -11,5 +11,15 @@ public class BedroomComponentFactory extends AbstractFloorComponentFactory{
 		else
 			return null;
 	}
+
+	@Override
+	public FloorComponent getGridComponent(String componentType) {
+		if(componentType == null){
+			return null;
+		}
+		
+		else
+			return null;
+	}
 	
 }

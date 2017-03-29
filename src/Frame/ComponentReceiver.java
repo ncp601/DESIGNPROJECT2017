@@ -2,12 +2,10 @@ package Frame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class ComponentReceiver {
 
 	private InnerPanel innerPanel;
-	private Dimension componentSize = new Dimension(110, 110);
 	private MainLayeredPane selectedTab;
 	private Component[] onGrid;
 	
@@ -19,10 +17,9 @@ public class ComponentReceiver {
 		currentComponent.setIsOnGrid(true);
 		innerPanel.getMenuPane().revalidate();
 		innerPanel.getGUI().remove(currentComponent);
-		currentComponent.setSize(currentComponent.getImageSize());
+		currentComponent.setSize(currentComponent.getGridImageSize());
     	selectedTab.getGlassPanel().add(currentComponent);
-    	currentComponent.setLocation(sourceComponent.getX() - 213, sourceComponent.getY() + 5); 
-    	currentComponent.setPreviousLocation(currentComponent.getLocation());
+    	currentComponent.setLocation(currentLocation.x - 218, currentLocation.y - 105);
     	currentComponent.setVisible(true);
     	selectedTab.revalidate();
     	selectedTab.repaint();
@@ -35,7 +32,7 @@ public class ComponentReceiver {
 		currentComponent.setIsOnGrid(true);
 		innerPanel.getMenuPane().revalidate();
 		innerPanel.getGUI().remove(currentComponent);
-		currentComponent.setSize(currentComponent.getImageSize());
+		currentComponent.setSize(currentComponent.getGridImageSize());
     	selectedTab.getGlassPanel().add(currentComponent);
     	currentComponent.setLocation(currentComponent.getX(), currentComponent.getY());
     	((FloorComponent) currentComponent).setCurrentLocation(currentLocation);

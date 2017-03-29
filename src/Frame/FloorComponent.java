@@ -20,11 +20,11 @@ abstract public class FloorComponent extends JLabel{
 	abstract public void createComponent();
 	abstract public String getComponentType();
 	abstract public Dimension getImageSize();
+	abstract public Dimension getGridImageSize();
 	
 	public void setIsOnGrid(boolean m){
 		isOnGrid = m;
 	}
-	
 	 
 	public boolean getIsOnGrid(){
 		return isOnGrid;
@@ -45,4 +45,5 @@ abstract public class FloorComponent extends JLabel{
 	public Point getCurrentLocation(){
 		return currentLocation;
 	}
+	
 }

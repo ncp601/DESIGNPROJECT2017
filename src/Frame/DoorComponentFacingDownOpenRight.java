@@ -2,7 +2,6 @@ package Frame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class DoorComponentFacingDownOpenRight extends FloorComponent{
 
@@ -12,27 +11,39 @@ public class DoorComponentFacingDownOpenRight extends FloorComponent{
 	private static final long serialVersionUID = 1L;
 	
 	final private String componentType = "DOORFDOR";
-	private int xPosition;
-	private int yPosition;
-	private boolean isStackable = false;
-	private Dimension size = new Dimension(110, 110);
 	
+	private Dimension size = new Dimension(110, 110);
+	private Dimension gridSize = new Dimension(98, 98);
+	
+	private boolean inMenu;
 	private ComponentMover compMove = new ComponentMover();
 	
-	public DoorComponentFacingDownOpenRight(){
-		addMouseListener(compMove);
+	public DoorComponentFacingDownOpenRight(boolean m){
+		this.inMenu = m;
+        addMouseListener(compMove);
         addMouseMotionListener(compMove);
-        setPreferredSize(size);
-        createComponent();
-        setVisible(true);
-		setMaximumSize(size);
-		setMinimumSize(size);
+		createComponent();
+		setVisible(true);
 	}
 	
 	@Override
 	public void createComponent(){
-		ImageIcon image = new ImageIcon("images/doorFacingDownOpenRight.png");
-		setIcon(image);
+		
+		if(inMenu){
+			ImageIcon image = new ImageIcon("images/doorFacingDownOpenRight.png");
+			setIcon(image);
+			setMaximumSize(size);
+			setMinimumSize(size);
+	        setPreferredSize(size);
+		}
+		
+		if(!inMenu){
+			ImageIcon image = new ImageIcon("images/resizedDoorFacingDownOpenRight.png");
+			setIcon(image);
+			setMaximumSize(gridSize);
+			setMinimumSize(gridSize);
+	        setPreferredSize(gridSize);
+		}
 	}
 	
 	@Override
@@ -44,4 +55,10 @@ public class DoorComponentFacingDownOpenRight extends FloorComponent{
 	public Dimension getImageSize(){
 		return size;
 	}
+	
+	@Override
+	public Dimension getGridImageSize(){
+		return gridSize;
+	}
+
 }

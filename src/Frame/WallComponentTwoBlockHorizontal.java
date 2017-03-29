@@ -3,22 +3,22 @@ package Frame;
 import javax.swing.*;
 import java.awt.*;
 
-public class WindowComponentThreeVertical extends FloorComponent{
+public class WallComponentTwoBlockHorizontal extends FloorComponent{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	final private String componentType = "WINDOW3V";
+	final private String componentType = "WALL2H";
 
 	private Dimension size = new Dimension(110, 110);
-	private Dimension gridSize = new Dimension(17, 92);
+	private Dimension gridSize = new Dimension(62, 17);
 	
 	private boolean inMenu;
 	private ComponentMover compMove = new ComponentMover();
 	
-	public WindowComponentThreeVertical(boolean m){
+	public WallComponentTwoBlockHorizontal(boolean m){
 		this.inMenu = m;
         addMouseListener(compMove);
         addMouseMotionListener(compMove);
@@ -28,9 +28,9 @@ public class WindowComponentThreeVertical extends FloorComponent{
 	
 	@Override
 	public void createComponent(){
-
+		
 		if(inMenu){
-			ImageIcon image = new ImageIcon("images/threeBlockWindowVertical.png");
+			ImageIcon image = new ImageIcon("images/twoBlockWallHorizontal.png");
 			setIcon(image);
 			setMaximumSize(size);
 			setMinimumSize(size);
@@ -38,7 +38,7 @@ public class WindowComponentThreeVertical extends FloorComponent{
 		}
 		
 		if(!inMenu){
-			ImageIcon image = new ImageIcon("images/resizedThreeBlockWindowVertical.png");
+			ImageIcon image = new ImageIcon("images/resizedTwoBlockWallHorizontal.png");
 			setIcon(image);
 			setMaximumSize(gridSize);
 			setMinimumSize(gridSize);
@@ -62,4 +62,3 @@ public class WindowComponentThreeVertical extends FloorComponent{
 	}
 
 }
-

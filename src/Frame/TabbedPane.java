@@ -30,8 +30,9 @@ public class TabbedPane implements ChangeListener{
 	
     private InnerPanel innerPanel;
     
-    //Regular express to find wall components
-    String pattern = ".*Wall..";
+    //Regular expressions used to parse various strings
+    String addFloorPattern = ".*(WALL([1-3]+([H|V])|(HALF)))|(ELEVATOR(DOWN|UP|RIGHT|LEFT))";
+    String initialCheckPattern = "";
     
 	private int tabNumber = 0;
 	private int index = 0;
@@ -61,7 +62,7 @@ public class TabbedPane implements ChangeListener{
     addTabButton.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent evt) {
         	insertTab();
-        	addWallComponents();
+        	addExtendingComponents();
         }
     });
     
@@ -74,7 +75,7 @@ public class TabbedPane implements ChangeListener{
 		return floorTabPanel;
 	}
 	
-	
+	//Inserts an additional tab when the add tab button us pressed
 	private void insertTab(){
 		tabNumber++;
 		String title = "Floor " + String.valueOf (floorTabPanel.getTabCount());
@@ -103,18 +104,18 @@ public class TabbedPane implements ChangeListener{
 	}
 	
 	//Adds copies of all wall components of the previous layer to the new layer 
-	public void addWallComponents(){
+	public void addExtendingComponents(){
 		innerPanel = InnerPanel.getInstance();
 		previousTab = (MainLayeredPane)floorTabPanel.getComponentAt(tabNumber - 2);
 		onGrid = previousTab.getGlassPanel().getComponents();
 		
-		Pattern wallPattern = Pattern.compile(pattern);
+		Pattern wallPattern = Pattern.compile(addFloorPattern);
 		
 		for(int i = 0; i < onGrid.length; i++){
 			Matcher m = wallPattern.matcher(onGrid[i].toString());
 			if(m.find()){
 				wallType = ((FloorComponent) onGrid[i]).getComponentType();
-				wallComponent = wallFactory.getComponent(wallType);
+				wallComponent = wallFactory.getGridComponent(wallType);
 				innerPanel.getSelectedFloor().getGlassPanel().add(wallComponent);
 				wallComponent.setLocation(onGrid[i].getLocation());
 				wallComponent.setSize(onGrid[i].getSize());
@@ -125,6 +126,17 @@ public class TabbedPane implements ChangeListener{
 		}
 		previousTab.repaint();
 		previousTab.revalidate();
+	}
+	
+	public void stringToFloorComponents(){
+		innerPanel = InnerPanel.getInstance();
+		String loadComponents = innerPanel.getLoadedComponents();
+		
+		Pattern initialPattern = Pattern.compile(initialCheckPattern);
+		
+		if(loadComponents.matches(initialCheckPattern)){
+			
+		}
 	}
 	
 	public String floorsToString(){
@@ -141,6 +153,11 @@ public class TabbedPane implements ChangeListener{
 				if(i == 0 && j == 0){
 					allComponents = "$ " + temp + " || ";
 				}
+				
+				if(j == componentList.length - 1){
+					allComponents = allComponents + temp;
+				}
+				
 				else {
 					allComponents = allComponents + temp + " || ";
 				}

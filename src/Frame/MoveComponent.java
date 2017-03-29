@@ -2,8 +2,6 @@ package Frame;
 
 import java.awt.*;
 
-import javax.swing.*;
-
 public class MoveComponent implements ComponentCommands {
 
 	ComponentReceiver compR;

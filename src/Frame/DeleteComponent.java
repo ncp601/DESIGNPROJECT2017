@@ -2,8 +2,6 @@ package Frame;
 
 import java.awt.*;
 
-import javax.swing.JLabel;
-
 public class DeleteComponent implements ComponentCommands {
 
 	ComponentReceiver compR;

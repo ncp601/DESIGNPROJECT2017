@@ -17,7 +17,6 @@ public class ComponentMover extends MouseAdapter
 	private Point pressed;
 	private Point location;
 	private Point releaseLocation;
-	private Point previousLocation;
 
 	private Cursor originalCursor;
 	private boolean autoscrolls;
@@ -56,7 +55,7 @@ public class ComponentMover extends MouseAdapter
 	private boolean releasedOperaion;
 	private boolean releasedOperationInside;
 	
-    private Dimension componentSize = new Dimension(110, 110);
+    //private Dimension componentSize = new Dimension(110, 110);
     
 	private InnerPanel innerPanel;
 
@@ -66,7 +65,6 @@ public class ComponentMover extends MouseAdapter
 	 */
 	public ComponentMover(){	
 	}
-
 	
 	/**
 	 *  Setup the variables used to control the moving of the component:
@@ -91,8 +89,9 @@ public class ComponentMover extends MouseAdapter
 	    		type = currentComponent.getComponentType();
 	    		System.out.println(type);
 	    		
+	    		
 		    	if(wallFactory.getComponent(type) != null){
-		    		newComponent = wallFactory.getComponent(type);
+		    		newComponent = wallFactory.getGridComponent(type);
 		    	}
 		    	
 		    	if(windowFactory.getComponent(type) != null){
@@ -215,26 +214,6 @@ public class ComponentMover extends MouseAdapter
 
 		locationX = location.x + dragX;
 		locationY = location.y + dragY;
-
-		//  Mouse dragged events are not generated for every pixel the mouse
-		//  is moved. Adjust the location to make sure we are still on a
-		//  snap value.
-
-//		while (locationX < edgeInsets.left)
-//			locationX += snapSize.width;
-//
-//		while (locationY < edgeInsets.top)
-//			locationY += snapSize.height;
-//
-//		Dimension d = getBoundingSize( destination );
-//
-//		while (locationX + destination.getSize().width + edgeInsets.right > d.width)
-//			locationX -= snapSize.width;
-//
-//		while (locationY + destination.getSize().height + edgeInsets.bottom > d.height)
-//			locationY -= snapSize.height;
-
-		//  Adjustments are finished, move the component
 
 		innerPanel.getGUI().repaint();
 		destination.setLocation(locationX, locationY);

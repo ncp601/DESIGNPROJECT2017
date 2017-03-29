@@ -1,7 +1,5 @@
 package Frame;
 
-import javax.swing.*;
-
 public class NewCommand implements ToolBarCommands{
 
 	ToolBarReceiver toolbarR;

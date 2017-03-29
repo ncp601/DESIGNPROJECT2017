@@ -2,7 +2,6 @@ package Frame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class WindowComponentTwoVertical extends FloorComponent{
 
@@ -12,27 +11,39 @@ public class WindowComponentTwoVertical extends FloorComponent{
 	private static final long serialVersionUID = 1L;
 	
 	final private String componentType = "WINDOW2V";
-	private int xPosition;
-	private int yPosition;
-	private boolean isStackable = false;
+
 	private Dimension size = new Dimension(110, 110);
+	private Dimension gridSize = new Dimension(17, 62);
 	
+	private boolean inMenu;
 	private ComponentMover compMove = new ComponentMover();
 	
-	public WindowComponentTwoVertical(){
-		addMouseListener(compMove);
+	public WindowComponentTwoVertical(boolean m){
+		this.inMenu = m;
+        addMouseListener(compMove);
         addMouseMotionListener(compMove);
-        setPreferredSize(size);
-        createComponent();
+		createComponent();
 		setVisible(true);
-		setMaximumSize(size);
-		setMinimumSize(size);
 	}
 	
 	@Override
 	public void createComponent(){
-		ImageIcon image = new ImageIcon("images/twoBlockWindowVertical.png");
-		setIcon(image);
+
+		if(inMenu){
+			ImageIcon image = new ImageIcon("images/twoBlockWindowVertical.png");
+			setIcon(image);
+			setMaximumSize(size);
+			setMinimumSize(size);
+	        setPreferredSize(size);
+		}
+		
+		if(!inMenu){
+			ImageIcon image = new ImageIcon("images/resizedTwoBlockWindowVertical.png");
+			setIcon(image);
+			setMaximumSize(gridSize);
+			setMinimumSize(gridSize);
+	        setPreferredSize(gridSize);
+		}
 	}
 	
 	@Override
@@ -44,4 +55,10 @@ public class WindowComponentTwoVertical extends FloorComponent{
 	public Dimension getImageSize(){
 		return size;
 	}
+	
+	@Override
+	public Dimension getGridImageSize(){
+		return gridSize;
+	}
+
 }

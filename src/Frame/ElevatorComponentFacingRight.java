@@ -1,7 +1,6 @@
 package Frame;
 
 import java.awt.Dimension;
-
 import javax.swing.ImageIcon;
 
 public class ElevatorComponentFacingRight extends FloorComponent{
@@ -14,23 +13,37 @@ public class ElevatorComponentFacingRight extends FloorComponent{
 	final private String componentType = "ELEVATORRIGHT";
 	
 	private Dimension size = new Dimension(110, 110);
+	private Dimension gridSize = new Dimension(100, 95);
 	
+	private boolean inMenu;
 	private ComponentMover compMove = new ComponentMover();
 	
-	public ElevatorComponentFacingRight(){
-		addMouseListener(compMove);
+	public ElevatorComponentFacingRight(boolean m){
+		this.inMenu = m;
+        addMouseListener(compMove);
         addMouseMotionListener(compMove);
-        setPreferredSize(size);
-        createComponent();
-        setVisible(true);
-		setMaximumSize(size);
-		setMinimumSize(size);
+		createComponent();
+		setVisible(true);
 	}
 	
 	@Override
 	public void createComponent(){
-		ImageIcon image = new ImageIcon("images/elevatorFacingRight.png");
-		setIcon(image);
+		
+		if(inMenu){
+			ImageIcon image = new ImageIcon("images/elevatorFacingRight.png");
+			setIcon(image);
+			setMaximumSize(size);
+			setMinimumSize(size);
+	        setPreferredSize(size);
+		}
+		
+		if(!inMenu){
+			ImageIcon image = new ImageIcon("images/resizedElevatorFacingRight.png");
+			setIcon(image);
+			setMaximumSize(gridSize);
+			setMinimumSize(gridSize);
+	        setPreferredSize(gridSize);
+		}
 	}
 	
 	@Override
@@ -41,6 +54,11 @@ public class ElevatorComponentFacingRight extends FloorComponent{
 	@Override
 	public Dimension getImageSize(){
 		return size;
+	}
+	
+	@Override
+	public Dimension getGridImageSize(){
+		return gridSize;
 	}
 	
 }

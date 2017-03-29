@@ -2,7 +2,6 @@ package Frame;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
 
 import javax.swing.*;
 
@@ -12,6 +11,11 @@ import javax.swing.*;
  * buttons.
  */
 public class MenuPane extends JPanel{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private BackButton backButton;
 	private MenuButton bathroomButton;
@@ -453,9 +457,11 @@ public class MenuPane extends JPanel{
             }
         });
         
+        windowsMenuPanel.add(windowFactory.getComponent("WINDOW1H"));
+        windowsMenuPanel.add(windowFactory.getComponent("WINDOW1V"));
         windowsMenuPanel.add(windowFactory.getComponent("WINDOW2H"));
-        windowsMenuPanel.add(windowFactory.getComponent("WINDOW3H"));
         windowsMenuPanel.add(windowFactory.getComponent("WINDOW2V"));
+        windowsMenuPanel.add(windowFactory.getComponent("WINDOW3H"));
         windowsMenuPanel.add(windowFactory.getComponent("WINDOW3V"));
         
         add(windowsMenuPanel, "WINDOWS");

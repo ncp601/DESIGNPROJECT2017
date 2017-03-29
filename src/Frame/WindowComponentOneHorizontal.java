@@ -1,24 +1,25 @@
 package Frame;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
 
-public class WindowComponentThreeVertical extends FloorComponent{
+import javax.swing.ImageIcon;
+
+public class WindowComponentOneHorizontal extends FloorComponent{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	final private String componentType = "WINDOW3V";
+	final private String componentType = "WINDOW1H";
 
 	private Dimension size = new Dimension(110, 110);
-	private Dimension gridSize = new Dimension(17, 92);
+	private Dimension gridSize = new Dimension(34, 17);
 	
 	private boolean inMenu;
 	private ComponentMover compMove = new ComponentMover();
 	
-	public WindowComponentThreeVertical(boolean m){
+	public WindowComponentOneHorizontal(boolean m){
 		this.inMenu = m;
         addMouseListener(compMove);
         addMouseMotionListener(compMove);
@@ -28,9 +29,9 @@ public class WindowComponentThreeVertical extends FloorComponent{
 	
 	@Override
 	public void createComponent(){
-
+		
 		if(inMenu){
-			ImageIcon image = new ImageIcon("images/threeBlockWindowVertical.png");
+			ImageIcon image = new ImageIcon("images/oneBlockWindowHorizontal");
 			setIcon(image);
 			setMaximumSize(size);
 			setMinimumSize(size);
@@ -38,7 +39,7 @@ public class WindowComponentThreeVertical extends FloorComponent{
 		}
 		
 		if(!inMenu){
-			ImageIcon image = new ImageIcon("images/resizedThreeBlockWindowVertical.png");
+			ImageIcon image = new ImageIcon("images/resizedOneBlockWindowHorizontal");
 			setIcon(image);
 			setMaximumSize(gridSize);
 			setMinimumSize(gridSize);
@@ -62,4 +63,3 @@ public class WindowComponentThreeVertical extends FloorComponent{
 	}
 
 }
-

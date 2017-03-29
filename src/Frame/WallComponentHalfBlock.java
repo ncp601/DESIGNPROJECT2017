@@ -2,7 +2,6 @@ package Frame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class WallComponentHalfBlock extends FloorComponent{
 
@@ -12,25 +11,40 @@ public class WallComponentHalfBlock extends FloorComponent{
 	private static final long serialVersionUID = 1L;
 	
 	final private String componentType = "WALLHALF";
-	private boolean isStackable = false;
+
 	private Dimension size = new Dimension(110, 110);
+	private Dimension gridSize = new Dimension(16,16);
 	
+	private boolean inMenu;
 	private ComponentMover compMove = new ComponentMover();
 	
-	public WallComponentHalfBlock(){
+	public WallComponentHalfBlock(Boolean m){
+		this.inMenu = m;
         addMouseListener(compMove);
         addMouseMotionListener(compMove);
-        setPreferredSize(size);
 		createComponent();
 		setVisible(true);
-		setMaximumSize(size);
-		setMinimumSize(size);
 	}
 	
 	@Override
 	public void createComponent(){
-		ImageIcon image = new ImageIcon("images/halfBlockWall.png");
-		setIcon(image);
+		
+		if(inMenu){
+			ImageIcon image = new ImageIcon("images/halfBlockWall.png");
+			setIcon(image);
+			setMaximumSize(size);
+			setMinimumSize(size);
+	        setPreferredSize(size);
+		}
+		
+		if(!inMenu){
+			ImageIcon image = new ImageIcon("images/resizedHalfBlockWall.png");
+			setIcon(image);
+			setMaximumSize(gridSize);
+			setMinimumSize(gridSize);
+	        setPreferredSize(gridSize);
+		}
+
 	}
 	
 	public String getComponentType(){
@@ -40,5 +54,9 @@ public class WallComponentHalfBlock extends FloorComponent{
 	public Dimension getImageSize(){
 		return size;
 	}
-	
+
+	public Dimension getGridImageSize(){
+		return gridSize;
+	}
+
 }

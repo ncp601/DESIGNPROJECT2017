@@ -14,23 +14,37 @@ public class ElevatorComponentFacingDown extends FloorComponent{
 	final private String componentType = "ELEVATORDOWN";
 	
 	private Dimension size = new Dimension(110, 110);
+	private Dimension gridSize = new Dimension(100, 85);
 	
+	private boolean inMenu;
 	private ComponentMover compMove = new ComponentMover();
 	
-	public ElevatorComponentFacingDown(){
-		addMouseListener(compMove);
+	public ElevatorComponentFacingDown(boolean m){
+		this.inMenu = m;
+        addMouseListener(compMove);
         addMouseMotionListener(compMove);
-        setPreferredSize(size);
-        createComponent();
-        setVisible(true);
-		setMaximumSize(size);
-		setMinimumSize(size);
+		createComponent();
+		setVisible(true);
 	}
 	
 	@Override
 	public void createComponent(){
-		ImageIcon image = new ImageIcon("images/elevatorFacingDown.png");
-		setIcon(image);
+
+		if(inMenu){
+			ImageIcon image = new ImageIcon("images/elevatorFacingDown.png");
+			setIcon(image);
+			setMaximumSize(size);
+			setMinimumSize(size);
+	        setPreferredSize(size);
+		}
+		
+		if(!inMenu){
+			ImageIcon image = new ImageIcon("images/resizedElevatorFacingDown.png");
+			setIcon(image);
+			setMaximumSize(gridSize);
+			setMinimumSize(gridSize);
+	        setPreferredSize(gridSize);
+		}
 	}
 	
 	@Override
@@ -41,6 +55,11 @@ public class ElevatorComponentFacingDown extends FloorComponent{
 	@Override
 	public Dimension getImageSize(){
 		return size;
+	}
+	
+	@Override
+	public Dimension getGridImageSize(){
+		return gridSize;
 	}
 	
 }
