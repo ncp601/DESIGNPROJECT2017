@@ -2,7 +2,8 @@ package Frame;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -28,6 +29,7 @@ public class TabbedPane implements ChangeListener{
 	private Component[] onGrid;
 	private Component[] componentList;
 	private String extendedComponentType;
+	private StringBuilder loadedType;
 	private FloorComponent extendedComponent;
 	private AbstractFloorComponentFactory wallFactory = FloorComponentFactoryProducer.getFactory("WALL");
 	private AbstractFloorComponentFactory stairsFactory = FloorComponentFactoryProducer.getFactory("STAIRS");
@@ -37,8 +39,7 @@ public class TabbedPane implements ChangeListener{
     
     //Regular expressions used to parse various strings
     String addFloorPattern = "(Wall)|(Elevator)|(Stairs)"; // (WALL([1-3]+([H|V])|(HALF)))|(ELEVATOR(DOWN|UP|RIGHT|LEFT))
-    String initialCheckPattern = "^[$].*[$]$";
-    String componentsPattern = "";
+    String initialCheckPattern = "";
     
 	private int tabNumber = 0;
 	private int index = 0;
@@ -100,6 +101,39 @@ public class TabbedPane implements ChangeListener{
 	    } 
     }
 	
+	public  void removeCurrentFloor(){
+
+        //if 1 tab + plus tab do nothing
+        if(tabNumber == 1){ 
+        	return;
+        }
+        
+        else if(tabNumber == (index+1)){
+        	floorTabPanel.setSelectedIndex(index-1);
+            floorTabPanel.remove(index);        	
+        }
+        
+        else if( index+1 == 1){
+        	floorTabPanel.setSelectedIndex(index);
+            floorTabPanel.remove(index);
+        }
+        
+        else {
+        	floorTabPanel.setSelectedIndex(index);
+            floorTabPanel.remove(index);
+        }
+        
+        tabNumber = floorTabPanel.getTabCount() - 1;        
+        updateFloorNames();
+    }
+	
+	private void updateFloorNames(){
+		for(int i = 0; i< tabNumber; i++){
+			String title = "Floor " + (i+1);
+			floorTabPanel.setTitleAt(i , title);
+		}
+	}
+	
 	//Removes all the current tabs and adds the default 
 	public void removeAll(){
 		for(int i = floorTabPanel.getTabCount(); i > 1  ; i--){
@@ -146,15 +180,29 @@ public class TabbedPane implements ChangeListener{
 	public void stringToFloorComponents(){
 		innerPanel = InnerPanel.getInstance();
 		String loadComponents = innerPanel.getLoadedComponents();
-		
 		Pattern initialPattern = Pattern.compile(initialCheckPattern);
 		Matcher m = initialPattern.matcher(loadComponents);
 		
 		if(m.find()){
+			System.out.println("Match comfirmed");
 			for(int i = 0; i < loadComponents.length(); i++){
-//				if(loadComponents.charAt(i) == ){
-//					
-//				}
+				int j = i+1;
+				if(loadComponents.charAt(i) == '@'){
+					System.out.println("@ Found");
+					loadedType = new StringBuilder();
+					while(loadComponents.charAt(j) != '@'){
+						loadedType.append(loadComponents.charAt(j));
+						j++;
+					}
+				}
+				
+				i = j;
+				
+				if(loadComponents.charAt(i) == '#'){
+					j = i;
+					
+				}
+					
 			}
 			
 		}
@@ -170,23 +218,22 @@ public class TabbedPane implements ChangeListener{
 			currentFloor = (MainLayeredPane) floorTabPanel.getComponentAt(tabs -1);
 			componentList = currentFloor.getGlassPanel().getComponents();
 			for(int j = 0; j < componentList.length; j++){
-				String name = ((FloorComponent) componentList[j]).getComponentType();
-				String location = componentList[j].getLocation().toString();
+				String temp = componentList[j].toString();
 				if(i == 0 && j == 0){
-					allComponents = "$" + name + "#" + location + "||";
+					allComponents = "$ " + temp + " || ";
 				}
 				
 				if(j == componentList.length - 1){
-					allComponents = allComponents + name + "#" + location;
+					allComponents = allComponents + temp;
 				}
 				
 				else {
-					allComponents = allComponents + name + "#" + location + "||";
+					allComponents = allComponents + temp + " || ";
 				}
 			}
-			allComponents = allComponents + "%%%%";
+			allComponents = allComponents + " %%%% ";
 		}
-		allComponents = allComponents + "$";
+		allComponents = allComponents + " $";
 		return allComponents;
 	}
 	

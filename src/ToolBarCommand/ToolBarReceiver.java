@@ -34,6 +34,7 @@ public class ToolBarReceiver {
 	
 	private PrintWriter out;
 	
+	//Change this to preset the preferred directory 
 	private String applicationDirectory = "C:/Users/Nick/workspace/twoBuilder/FloorPlans";
 	
 	private int returnFile;
@@ -104,6 +105,10 @@ public class ToolBarReceiver {
 		innerPanel.setLoadedComponents(sb.toString());
 		innerPanel.getTabbedPane().removeAll();
 		System.out.println(innerPanel.getLoadedComponents());
+	}
+	
+	public void removeCurrentFloor(TabbedPane currentMainPane){
+		currentMainPane.removeCurrentFloor();
 	}
 	
 }

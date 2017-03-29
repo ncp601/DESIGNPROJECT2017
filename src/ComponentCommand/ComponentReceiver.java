@@ -55,7 +55,6 @@ public class ComponentReceiver {
 		((FloorComponent) currentComponent).setCurrentLocation(currentLocation);
     	selectedTab.revalidate();
     	selectedTab.repaint();
-		
 	}
 	
 	public void deleteComponent(Component currentComponent, Point currentLocation){

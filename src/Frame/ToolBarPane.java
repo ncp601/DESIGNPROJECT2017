@@ -4,14 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import ComponentCommand.ClearComponents;
-import ComponentCommand.ComponentCommands;
-import ToolBarCommand.LoadCommand;
-import ToolBarCommand.NewCommand;
-import ToolBarCommand.SaveCommand;
-import ToolBarCommand.ToolBarCommands;
-import ToolBarCommand.ToolBarManager;
-import ToolBarCommand.ToolBarReceiver;
+import ComponentCommand.*;
+import ToolBarCommand.*;
 
 /**
  * Class that creates everything in the toolbar panel and 
@@ -37,6 +31,7 @@ public class ToolBarPane {
     private ToolBarCommands loadPlan;
     private ToolBarCommands savePlan;
     private ComponentCommands clearPlan;
+    private ToolBarCommands removeCurrentFloor;
     
     private TabbedPane currentTabbedPane;
     
@@ -240,8 +235,10 @@ public class ToolBarPane {
     
     private void removeFloorButtonActionPerformed(ActionEvent evt) {                                                    
     	innerPanel = InnerPanel.getInstance();
-    	clearPlan = new ClearComponents();
-    	innerPanel.getSelectedFloor().getComponentManager().doCurrentCommand(clearPlan);
+    	currentTabbedPane = innerPanel.getTabbedPane();
+    	removeCurrentFloor = new RemoveFloorCommand(tbR, currentTabbedPane);
+    	tbM.doCurrentCommand(removeCurrentFloor);
+
     } 
     
 }
