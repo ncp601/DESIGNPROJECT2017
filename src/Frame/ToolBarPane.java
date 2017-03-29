@@ -4,6 +4,15 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import ComponentCommand.ClearComponents;
+import ComponentCommand.ComponentCommands;
+import ToolBarCommand.LoadCommand;
+import ToolBarCommand.NewCommand;
+import ToolBarCommand.SaveCommand;
+import ToolBarCommand.ToolBarCommands;
+import ToolBarCommand.ToolBarManager;
+import ToolBarCommand.ToolBarReceiver;
+
 /**
  * Class that creates everything in the toolbar panel and 
  * implements the actions for the buttons.
@@ -19,6 +28,7 @@ public class ToolBarPane {
     private JButton undoButton;
     private JButton redoButton;
     private JButton clearButton;
+    private JButton removeFloorButton;
    
     private ToolBarReceiver tbR = new ToolBarReceiver();
     private ToolBarManager tbM = new ToolBarManager();
@@ -42,6 +52,7 @@ public class ToolBarPane {
         undoButton = new JButton();
         redoButton = new JButton();
         clearButton = new JButton();
+        removeFloorButton = new JButton();
         
 	      //Creates the topToolbar toolbar
 	        topToolBar.setFloatable(false);
@@ -146,6 +157,22 @@ public class ToolBarPane {
 	      //Adds the clear button to the toolbar
 	        topToolBar.add(clearButton);
 	        
+		      //Creates the clear button 
+	        removeFloorButton.setText("Delete Floor");
+	        removeFloorButton.setFocusable(false);
+	        removeFloorButton.setHorizontalTextPosition(SwingConstants.CENTER);
+	        removeFloorButton.setMaximumSize(new Dimension(100, 40));
+	        removeFloorButton.setMinimumSize(new Dimension(29, 30));
+	        removeFloorButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+	        removeFloorButton.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent evt) {
+	            	removeFloorButtonActionPerformed(evt);
+	            }
+	        });
+	        
+	      //Adds the clear button to the toolbar
+	        topToolBar.add(removeFloorButton);
+	        
 	      //------------------------------------------------------------------------------
 	        
 	      //Creates the layouts for the toolbarPanel
@@ -206,6 +233,12 @@ public class ToolBarPane {
     } 
     
     private void clearButtonActionPerformed(ActionEvent evt) {                                                    
+    	innerPanel = InnerPanel.getInstance();
+    	clearPlan = new ClearComponents();
+    	innerPanel.getSelectedFloor().getComponentManager().doCurrentCommand(clearPlan);
+    } 
+    
+    private void removeFloorButtonActionPerformed(ActionEvent evt) {                                                    
     	innerPanel = InnerPanel.getInstance();
     	clearPlan = new ClearComponents();
     	innerPanel.getSelectedFloor().getComponentManager().doCurrentCommand(clearPlan);

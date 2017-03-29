@@ -1,6 +1,11 @@
 package Frame;
 
 import javax.swing.*;
+
+import ComponentCommand.ComponentManager;
+import ComponentCommand.ComponentMover;
+import ComponentCommand.ComponentReceiver;
+
 import java.awt.*;
 
 

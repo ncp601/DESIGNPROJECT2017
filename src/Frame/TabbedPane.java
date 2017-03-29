@@ -9,6 +9,10 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import Factories.AbstractFloorComponentFactory;
+import Factories.FloorComponentFactoryProducer;
+import FloorComponent.FloorComponent;
+
 /**
  * Class that creates everything in the left tabbed panel. 
  * 

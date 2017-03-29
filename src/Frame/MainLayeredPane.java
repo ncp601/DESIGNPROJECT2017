@@ -6,6 +6,10 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
+import ComponentCommand.ComponentManager;
+import ComponentCommand.ComponentReceiver;
+import FloorComponent.*;
+
 public class MainLayeredPane extends JLayeredPane {
 
     /**
