@@ -39,7 +39,7 @@ public class TabbedPane implements ChangeListener{
     
     //Regular expressions used to parse various strings
     String addFloorPattern = "(Wall)|(Elevator)|(Stairs)"; // (WALL([1-3]+([H|V])|(HALF)))|(ELEVATOR(DOWN|UP|RIGHT|LEFT))
-    String initialCheckPattern = "";
+    String initialCheckPattern = "^[$].*[$]$";
     
 	private int tabNumber = 0;
 	private int index = 0;
@@ -209,33 +209,34 @@ public class TabbedPane implements ChangeListener{
 	}
 	
 	public String floorsToString(){
-		innerPanel = InnerPanel.getInstance();
-		
-		String allComponents = "";
-		int tabs = floorTabPanel.getTabCount() - 1;
-		
-		for(int i = 0; i < tabs; i++){
-			currentFloor = (MainLayeredPane) floorTabPanel.getComponentAt(tabs -1);
-			componentList = currentFloor.getGlassPanel().getComponents();
-			for(int j = 0; j < componentList.length; j++){
-				String temp = componentList[j].toString();
-				if(i == 0 && j == 0){
-					allComponents = "$ " + temp + " || ";
-				}
-				
-				if(j == componentList.length - 1){
-					allComponents = allComponents + temp;
-				}
-				
-				else {
-					allComponents = allComponents + temp + " || ";
-				}
-			}
-			allComponents = allComponents + " %%%% ";
-		}
-		allComponents = allComponents + " $";
-		return allComponents;
-	}
+        innerPanel = InnerPanel.getInstance();
+
+        String allComponents = "";
+        int tabs = floorTabPanel.getTabCount() - 1;
+
+        for(int i = 0; i < tabs; i++){
+            currentFloor = (MainLayeredPane) floorTabPanel.getComponentAt(tabs -1);
+            componentList = currentFloor.getGlassPanel().getComponents();
+            for(int j = 0; j < componentList.length; j++){
+                String name = ((FloorComponent) componentList[j]).getComponentType();
+                String location = componentList[j].getLocation().toString();
+                if(i == 0 && j == 0){
+                    allComponents = "$" + "@" + name + "@" + "#" + location + "||";
+                }
+
+                if(j == componentList.length - 1){
+                    allComponents = allComponents + "@" + name + "@" + "#" + location;
+                }
+
+                else {
+                    allComponents = allComponents + "@" + name + "@" + "#" + location + "||";
+                }
+            }
+            allComponents = allComponents + "%%%%";
+        }
+        allComponents = allComponents + "$";
+        return allComponents;
+    }
 	
 	public void stateChanged(ChangeEvent event) {
 		innerPanel = InnerPanel.getInstance();

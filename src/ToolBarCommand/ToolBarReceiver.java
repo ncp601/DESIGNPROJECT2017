@@ -104,6 +104,7 @@ public class ToolBarReceiver {
 		}
 		innerPanel.setLoadedComponents(sb.toString());
 		innerPanel.getTabbedPane().removeAll();
+		innerPanel.getTabbedPane().stringToFloorComponents();
 		System.out.println(innerPanel.getLoadedComponents());
 	}
 	
