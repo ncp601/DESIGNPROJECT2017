@@ -13,7 +13,7 @@ public class WindowComponentOneVertical extends FloorComponent{
 	final private String componentType = "WINDOW1V";
 
 	private Dimension size = new Dimension(110, 110);
-	private Dimension gridSize = new Dimension(19,34);
+	private Dimension gridSize = new Dimension(17,32);
 	
 	private boolean inMenu;
 	private ComponentMover compMove = new ComponentMover();

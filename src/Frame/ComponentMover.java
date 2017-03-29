@@ -95,43 +95,43 @@ public class ComponentMover extends MouseAdapter
 		    	}
 		    	
 		    	if(windowFactory.getComponent(type) != null){
-		    		newComponent = windowFactory.getComponent(type);
+		    		newComponent = windowFactory.getGridComponent(type);
 		    	}
 		    	
 		    	if(doorFactory.getComponent(type) != null){
-		    		newComponent = doorFactory.getComponent(type);
+		    		newComponent = doorFactory.getGridComponent(type);
 		    	}
 		    	
 		    	if(stairsFactory.getComponent(type) != null){
-		    		newComponent = stairsFactory.getComponent(type);
+		    		newComponent = stairsFactory.getGridComponent(type);
 		    	}
 		    	
 		    	if(elevatorFactory.getComponent(type) != null){
-		    		newComponent = elevatorFactory.getComponent(type);
+		    		newComponent = elevatorFactory.getGridComponent(type);
 		    	}
 		    	
 		    	if(flooringFactory.getComponent(type) != null){
-		    		newComponent = flooringFactory.getComponent(type);
+		    		newComponent = flooringFactory.getGridComponent(type);
 		    	}
 		    	
 		    	if(dinningRoomFactory.getComponent(type) != null){
-		    		newComponent = dinningRoomFactory.getComponent(type);
+		    		newComponent = dinningRoomFactory.getGridComponent(type);
 		    	}
 		    	
 		    	if(bathroomFactory.getComponent(type) != null){
-		    		newComponent = bathroomFactory.getComponent(type);
+		    		newComponent = bathroomFactory.getGridComponent(type);
 		    	}
 		    	
 		    	if(bedroomFactory.getComponent(type) != null){
-		    		newComponent = bedroomFactory.getComponent(type);
+		    		newComponent = bedroomFactory.getGridComponent(type);
 		    	}
 		    	
 		    	if(laundryFactory.getComponent(type) != null){
-		    		newComponent = laundryFactory.getComponent(type);
+		    		newComponent = laundryFactory.getGridComponent(type);
 		    	}
 		    	
 		    	if(garageFactory.getComponent(type) != null){
-		    		newComponent = garageFactory.getComponent(type);
+		    		newComponent = garageFactory.getGridComponent(type);
 		    	}
 		    	
 		    	newComponent.setVisible(true);

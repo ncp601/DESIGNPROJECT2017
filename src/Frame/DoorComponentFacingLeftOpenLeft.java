@@ -13,7 +13,7 @@ public class DoorComponentFacingLeftOpenLeft extends FloorComponent{
 	final private String componentType = "DOORFLOL";
 
 	private Dimension size = new Dimension(110, 110);
-	private Dimension gridSize = new Dimension(98, 98);
+	private Dimension gridSize = new Dimension(83, 93);
 	
 	private boolean inMenu;
 	private ComponentMover compMove = new ComponentMover();
