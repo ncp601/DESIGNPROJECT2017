@@ -207,7 +207,7 @@ public class TabbedPane implements ChangeListener{
 		if(m.find()){
 			
 			int j = 0;
-			int i = 0;
+			int i = 1;
 			while(i < loadComponents.length()){
 				if(loadComponents.charAt(i) == '@'){
 					System.out.println("@ Found");
@@ -222,10 +222,10 @@ public class TabbedPane implements ChangeListener{
 					System.out.println(loadedType.toString());
 				}
 				
+				j = i + 18;
 				if(loadComponents.charAt(i) == '#'){
 					System.out.println("# Found");
 					loadedLocation = new StringBuilder();
-					j = i + 18;
 					while(loadComponents.charAt(j) != ','){
 						loadedLocation.append(loadComponents.charAt(j));
 						j++;
