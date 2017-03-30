@@ -32,23 +32,23 @@ public class ElevatorComponentFactory extends AbstractFloorComponentFactory{
 
 	@Override
 	public FloorComponent getGridComponent(String componentType) {
-		if(componentType == null){
+		if(componentType.equals(null)){
 			return null;
 		}
 		
-		else if(componentType == "ELEVATORUP"){
+		else if(componentType.equals("ELEVATORUP")){
 			return new ElevatorComponentFacingUp(false);
 		}
 		
-		else if(componentType == "ELEVATORDOWN"){
+		else if(componentType.equals("ELEVATORDOWN")){
 			return new ElevatorComponentFacingDown(false);
 		}
 		
-		else if(componentType == "ELEVATORRIGHT"){
+		else if(componentType.equals("ELEVATORRIGHT")){
 			return new ElevatorComponentFacingRight(false);
 		}
 		
-		else if(componentType == "ELEVATORLEFT"){
+		else if(componentType.equals("ELEVATORLEFT")){
 			return new ElevatorComponentFacingLeft(false);
 		}
 		

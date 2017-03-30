@@ -44,27 +44,27 @@ public class WindowComponentFactory extends AbstractFloorComponentFactory{
 			return null;
 		}
 		
-		else if(componentType == "WINDOW1H"){
+		else if(componentType.equals("WINDOW1H")){
 			return new WindowComponentOneHorizontal(false);
 		}
 		
-		else if(componentType == "WINDOW1V"){
+		else if(componentType.equals("WINDOW1V")){
 			return new WindowComponentOneVertical(false);
 		}
 		
-		else if(componentType == "WINDOW2H"){
+		else if(componentType.equals("WINDOW2H")){
 			return new WindomComponentTwoHorizontal(false);
 		}
 		
-		else if(componentType == "WINDOW3H"){
+		else if(componentType.equals("WINDOW3H")){
 			return new WindowComponentThreeHorizontal(false);
 		}
 		
-		else if(componentType == "WINDOW2V"){
+		else if(componentType.equals("WINDOW2V")){
 			return new WindowComponentTwoVertical(false);
 		}
 		
-		else if(componentType == "WINDOW3V"){
+		else if(componentType.equals("WINDOW3V")){
 			return new WindowComponentThreeVertical(false);
 		}
 

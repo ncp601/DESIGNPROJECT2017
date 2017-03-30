@@ -11,19 +11,19 @@ public class StairsComponentFactory extends AbstractFloorComponentFactory{
 				return null;
 			}
 			
-			else if(componentType == "STAIRSSU"){
+			else if(componentType.equals("STAIRSSU")){
 				return new StairsStraightFacingUp(true);
 			}
 			
-			else if(componentType == "STAIRSSD"){
+			else if(componentType.equals("STAIRSSD")){
 				return new StairsStraightFacingDown(true);
 			}
 			
-			else if(componentType == "STAIRSSR"){
+			else if(componentType.equals("STAIRSSR")){
 				return new StairsStraightFacingRight(true);
 			}
 			
-			else if(componentType == "STAIRSSL"){
+			else if(componentType.equals("STAIRSSL")){
 				return new StairsStraightFacingLeft(true);
 			}
 			
@@ -33,23 +33,23 @@ public class StairsComponentFactory extends AbstractFloorComponentFactory{
 		
 		@Override
 		public FloorComponent getGridComponent(String componentType){
-			if(componentType == null){
+			if(componentType.equals(null)){
 				return null;
 			}
 			
-			else if(componentType == "STAIRSSU"){
+			else if(componentType.equals("STAIRSSU")){
 				return new StairsStraightFacingUp(false);
 			}
 			
-			else if(componentType == "STAIRSSD"){
+			else if(componentType.equals("STAIRSSD")){
 				return new StairsStraightFacingDown(false);
 			}
 			
-			else if(componentType == "STAIRSSR"){
+			else if(componentType.equals("STAIRSSR")){
 				return new StairsStraightFacingRight(false);
 			}
 			
-			else if(componentType == "STAIRSSL"){
+			else if(componentType.equals("STAIRSSL")){
 				return new StairsStraightFacingLeft(false);
 			}
 			

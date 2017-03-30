@@ -10,35 +10,35 @@ public class DoorComponentFactory extends AbstractFloorComponentFactory{
 			return null;
 		}
 		
-		else if(componentType == "DOORFDOL"){
+		else if(componentType.equals("DOORFDOL")){
 			return new DoorComponentFacingDownOpenLeft(true);
 		}
 		
-		else if(componentType == "DOORFDOR"){
+		else if(componentType.equals("DOORFDOR")){
 			return new DoorComponentFacingDownOpenRight(true);
 		}
 		
-		else if(componentType == "DOORFLOL"){
+		else if(componentType.equals( "DOORFLOL")){
 			return new DoorComponentFacingLeftOpenLeft(true);
 		}
 		
-		else if(componentType == "DOORFLOR"){
+		else if(componentType.equals("DOORFLOR")){
 			return new DoorComponentFacingLeftOpenRight(true);
 		}
 		
-		else if(componentType == "DOORFROL"){
+		else if(componentType.equals("DOORFROL")){
 			return new DoorComponentFacingRightOpenLeft(true);
 		}
 		
-		else if(componentType == "DOORFROR"){
+		else if(componentType.equals("DOORFROR")){
 			return new DoorComponentFacingRightOpenRight(true);
 		}
 		
-		else if(componentType == "DOORFUOL"){
+		else if(componentType.equals("DOORFUOL")){
 			return new DoorComponentFacingUpOpenLeft(true);
 		}
 		
-		else if(componentType == "DOORFUOR"){
+		else if(componentType.equals("DOORFUOR")){
 			return new DoorComponentFacingUpOpenRight(true);
 		}
 		else
@@ -51,35 +51,35 @@ public class DoorComponentFactory extends AbstractFloorComponentFactory{
 			return null;
 		}
 		
-		else if(componentType == "DOORFDOL"){
+		else if(componentType.equals("DOORFDOL")){
 			return new DoorComponentFacingDownOpenLeft(false);
 		}
 		
-		else if(componentType == "DOORFDOR"){
+		else if(componentType.equals("DOORFDOR")){
 			return new DoorComponentFacingDownOpenRight(false);
 		}
 		
-		else if(componentType == "DOORFLOL"){
+		else if(componentType.equals("DOORFLOL")){
 			return new DoorComponentFacingLeftOpenLeft(false);
 		}
 		
-		else if(componentType == "DOORFLOR"){
+		else if(componentType.equals("DOORFLOR")){
 			return new DoorComponentFacingLeftOpenRight(false);
 		}
 		
-		else if(componentType == "DOORFROL"){
+		else if(componentType.equals("DOORFROL")){
 			return new DoorComponentFacingRightOpenLeft(false);
 		}
 		
-		else if(componentType == "DOORFROR"){
+		else if(componentType.equals("DOORFROR")){
 			return new DoorComponentFacingRightOpenRight(false);
 		}
 		
-		else if(componentType == "DOORFUOL"){
+		else if(componentType.equals("DOORFUOL")){
 			return new DoorComponentFacingUpOpenLeft(false);
 		}
 		
-		else if(componentType == "DOORFUOR"){
+		else if(componentType.equals("DOORFUOR")){
 			return new DoorComponentFacingUpOpenRight(false);
 		}
 		else

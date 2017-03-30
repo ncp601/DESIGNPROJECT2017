@@ -30,7 +30,7 @@ public class ComponentReceiver {
     	selectedTab.repaint();
 	}
 	
-	public void reAddComponent(FloorComponent currentComponent, Component sourceComponent, Point currentLocation){
+	public void reAddComponent(FloorComponent currentComponent, Point currentLocation){
 		innerPanel = InnerPanel.getInstance();
 		selectedTab = innerPanel.getSelectedFloor();
 		
@@ -52,6 +52,17 @@ public class ComponentReceiver {
 		selectedTab.getGlassPanel().remove(currentComponent);
 		selectedTab.getGlassPanel().add(currentComponent);
 		currentComponent.setLocation(currentLocation);
+		((FloorComponent) currentComponent).setCurrentLocation(currentLocation);
+    	selectedTab.revalidate();
+    	selectedTab.repaint();
+	}
+	
+	public void unMoveComponent(Component currentComponent, Point currentLocation){
+		innerPanel = InnerPanel.getInstance();
+		selectedTab = innerPanel.getSelectedFloor();
+		selectedTab.getGlassPanel().remove(currentComponent);
+		selectedTab.getGlassPanel().add(currentComponent);
+		currentComponent.setLocation(((FloorComponent) currentComponent).getPreviousLocation());
 		((FloorComponent) currentComponent).setCurrentLocation(currentLocation);
     	selectedTab.revalidate();
     	selectedTab.repaint();

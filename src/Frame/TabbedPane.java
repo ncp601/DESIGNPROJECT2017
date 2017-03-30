@@ -29,8 +29,8 @@ public class TabbedPane implements ChangeListener{
 	private Component[] onGrid;
 	private Component[] componentList;
 	
-	private String extendedComponentType;
-	private String loadedComponentType;
+	private String extendedComponentType = "";
+	private String loadedComponentType = "";
 	
 	private StringBuilder loadedType;
 	private StringBuilder loadedLocation;
@@ -38,11 +38,11 @@ public class TabbedPane implements ChangeListener{
 	private FloorComponent extendedComponent;
 	private FloorComponent loadedComponent;
 	
-	private AbstractFloorComponentFactory wallFactory = FloorComponentFactoryProducer.getFactory("WALL");
-	private AbstractFloorComponentFactory stairsFactory = FloorComponentFactoryProducer.getFactory("STAIRS");
-	private AbstractFloorComponentFactory elevatorFactory = FloorComponentFactoryProducer.getFactory("ELEVATOR");
+	private AbstractFloorComponentFactory wallFactory =  FloorComponentFactoryProducer.getFactory("WALL");
     private AbstractFloorComponentFactory windowFactory = FloorComponentFactoryProducer.getFactory("WINDOW");
     private AbstractFloorComponentFactory doorFactory = FloorComponentFactoryProducer.getFactory("DOOR");
+    private AbstractFloorComponentFactory stairsFactory = FloorComponentFactoryProducer.getFactory("STAIRS");
+    private AbstractFloorComponentFactory elevatorFactory = FloorComponentFactoryProducer.getFactory("ELEVATOR");
     private AbstractFloorComponentFactory flooringFactory = FloorComponentFactoryProducer.getFactory("FLOORING");
     private AbstractFloorComponentFactory dinningRoomFactory = FloorComponentFactoryProducer.getFactory("DINNINGROOM");
     private AbstractFloorComponentFactory bedroomFactory = FloorComponentFactoryProducer.getFactory("BEDROOM");
@@ -249,9 +249,6 @@ public class TabbedPane implements ChangeListener{
 				}
 				
 				if(loadComponents.charAt(i) == '|' && loadComponents.charAt(i+1) == '|'){
-					System.out.println("Loading a component");
-					System.out.println(loadedType.toString());
-					System.out.println(wallFactory.getGridComponent(loadedType.toString()).toString());
 					
 					if(wallFactory.getGridComponent(loadedType.toString()) != null){
 						System.out.println("Wall");
@@ -339,13 +336,14 @@ public class TabbedPane implements ChangeListener{
                     allComponents = "$" + "@" + name + "@" + "#" + location + "#" + "||";
                 }
 
+                else {
+                    allComponents = allComponents + "@" + name + "@" + "#" + location + "#" + "||";
+                }
+                
                 if(j == componentList.length - 1){
                     allComponents = allComponents + "@" + name + "@" + "#" + location + "#";
                 }
 
-                else {
-                    allComponents = allComponents + "@" + name + "@" + "#" + location + "#" + "||";
-                }
             }
             allComponents = allComponents + "%%%%";
         }

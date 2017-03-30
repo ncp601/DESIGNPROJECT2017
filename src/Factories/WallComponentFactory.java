@@ -48,31 +48,31 @@ public class WallComponentFactory extends AbstractFloorComponentFactory{
 			return null;
 		}
 		
-		else if(componentType == "WALLHALF"){
+		else if(componentType.equals("WALLHALF")){
 			return new WallComponentHalfBlock(false);
 		}
 		
-		else if(componentType == "WALL1H"){
+		else if(componentType.equals("WALL1H")){
 			return new WallComponentOneBlockHorizontal(false);
 		}
 		
-		else if(componentType == "WALL1V"){
+		else if(componentType.equals("WALL1V")){
 			return new WallComponentOneBlockVertical(false);
 		}
 		
-		else if(componentType == "WALL2H"){
+		else if(componentType.equals("WALL2H")){
 			return new WallComponentTwoBlockHorizontal(false);
 		}
 		
-		else if(componentType == "WALL3H"){
+		else if(componentType.equals("WALL3H")){
 			return new WallComponentThreeBlockHorizontal(false);
 		}
 		
-		else if(componentType == "WALL2V"){
+		else if(componentType.equals("WALL2V")){
 			return new WallComponentTwoBlockVertical(false);
 		}
 		
-		else if(componentType == "WALL3V"){
+		else if(componentType.equals("WALL3V")){
 			return new WallComponentThreeBlockVertical(false);
 		}
 		

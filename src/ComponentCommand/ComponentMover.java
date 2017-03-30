@@ -277,7 +277,7 @@ public class ComponentMover extends MouseAdapter
 				releasedOperaion = false;
 				releasedOperationInside = false;
 		    	System.out.println("Component inside of the grid");	
-		    	moveComp = new MoveComponent(selectedTab.getComponentReceiver(), source, source.getLocation());
+		    	moveComp = new MoveComponent(selectedTab.getComponentReceiver(), source, currentComponent.getLocation());
 		    	selectedTab.getComponentManager().doCurrentCommand(moveComp);
 			}
 			
@@ -285,7 +285,7 @@ public class ComponentMover extends MouseAdapter
 	    		releasedOperationInside = false;
 	    		releasedOperaion = false;
 		    	System.out.println("Component outside of the grid");
-		    	deleteComp = new DeleteComponent(selectedTab.getComponentReceiver(), source, releaseLocation);
+		    	deleteComp = new DeleteComponent(selectedTab.getComponentReceiver(), source, currentComponent, releaseLocation);
 		    	selectedTab.getComponentManager().doCurrentCommand(deleteComp);
 	    	}
 		}
